@@ -1,24 +1,4 @@
-import React from "react";
-import AsyncComponent from "./AsyncComponent";
+export { default as Hello2 } from './Hello2';
+export { Hello3 } from './Hello3';
 
-class FooComponents {
-  Hello = () => import("./Hello");
-
-  constructor(){
-    const self = this;
-
-    for (var p in self) {
-      (function (field_name) {
-        Object.defineProperty(self, field_name, {
-          get: function () {
-            console.log('GET', field_name);
-            return <AsyncComponent component={self[field_name]} />;
-          },
-        });
-      })(p);
-    }
-
-  }
-}
-
-export default new FooComponents();
+export const Hello = () => import('./Hello');

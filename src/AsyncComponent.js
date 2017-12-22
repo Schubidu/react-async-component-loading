@@ -6,8 +6,10 @@ export default class AsyncComponent extends Component {
     component: null,
   };
 
-  componentWillMount() {
-    this.props.component.then(c => this.setState(() => ({ component: c.default })));
+  async componentWillMount() {
+    const component = await this.props.component;
+    const name = this.props.componentName;
+    this.setState(() => ({ component: name in component ? component[name] : component.default }));
   }
 
   render() {
@@ -18,5 +20,6 @@ export default class AsyncComponent extends Component {
 }
 
 AsyncComponent.propTypes = {
-  component: PropTypes.object.isRequired,
+  component: PropTypes.oneOfType([PropTypes.func, PropTypes.object]).isRequired,
+  componentName: PropTypes.string,
 };
