@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
 import * as Foo from './Foo';
-import o  from "./componentLoaderHelper";
+import componentLoaderHelper from "./componentLoaderHelper";
 
 const styles = {
   fontFamily: 'sans-serif',
